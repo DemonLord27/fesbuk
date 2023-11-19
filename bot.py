@@ -251,7 +251,7 @@ class fbcal:
             time.sleep(5)
             os.remove('.cuki.txt')
             sys.exit()
-    def sihsih  ():
+    def sihsih (self):
         try:
             os.system('clear')
         except os.error:
