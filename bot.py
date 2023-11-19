@@ -251,14 +251,17 @@ class fbcal:
             time.sleep(5)
             os.remove('.cuki.txt')
             sys.exit()
-    def sihsih(self):
+    def sihsih  ():
         try:
+            # For Windows
             os.system('cls')
         except os.error:
             try:
+                # For Unix-like systems (Linux, macOS)
                 os.system('clear')
             except os.error:
-                pass
+                # Handle the case where neither 'cls' nor 'clear' is available
+                print("Clearing the screen is not supported on this system.")
     def cretpage(self):
         self.frename = "AdditionalProfilePlusCreationMutation"
         self.docpg = "5296879960418435"
