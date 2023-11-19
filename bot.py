@@ -241,24 +241,25 @@ class fbcal:
             'User-Agent':self.ua
         }
         self.lodcuki()
-        self.graph = "https://web.facebook.com/api/graphql/"
-        url = "https://www.facebook.com/pages/"
+        self.graph = "https://www.facebook.com/api/graphql/"
+        url = "https://m.facebook.com/profile.php"
         self.po = demon.get(url, cookies=self.cuki).text
-        self.nama = re.search('"NAME":"(.*?)"',self.po).group(1)
-        self.idu = re.search('"USER_ID":"(.*?)"',self.po).group(1)
+        pr(self.po)
+        self.nama = re.search('<title>(.*?)</title>',self.po).group(1)
+        self.idu = re.search('>Lihat Sebagai</a> · <a href="/(.*?)/',self.po).group(1)
         if self.idu == '0':
             pr(f"[bold red]{self.logo}\n\nCookies Expired ")
             time.sleep(5)
             os.remove('.cuki.txt')
             sys.exit()
-    def sihsih (self):
+    def sihsih(self):
         try:
+            # For Windows
             os.system('clear')
         except os.error:
             try:
                 os.system('cls')
             except os.error:
-                # Handle the case where neither 'cls' nor 'clear' is available
                 print("Clearing the screen is not supported on this system.")
     def cretpage(self):
         self.frename = "AdditionalProfilePlusCreationMutation"
@@ -426,6 +427,7 @@ class fbcal:
             print("Pages Yang Mana KONTOL")
     def menu(self):
         self.login()
+        self.po = demon.get('https://www.facebook.com/', cookies=self.cuki).text
         self.sihsih()
         pr("[bold green]"+self.logo)
         pr(pn(f"[bold white]                          Nama  : [bold black]{str(self.nama)}\n[bold white]                          Id    : [bold cyan]{str(self.idu)}",title="Login-Sebagai", width=78, style='bold green'))
